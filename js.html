@@ -1,29 +1,491 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<title>{Myco-Memory}</title>
-	<meta charset="UTF-8" />
-	<meta name="viewport" 
-    content="width=device-width, initial-scale=1.0" />
-	<link rel="stylesheet" href="style.css" />
-</head>
-<body>
-	<div id="main">
-		<h1><center>{Myco-Memory}</center></h1>
-		<center> <div id="mushroom-container">
-		<div id="mushroom"><center>Test your mycology ID skills</center></div>
-		<div id="mushroom-image"></div>
-		<!--<center><img height="200" width="200" id="next-mushroom" src=""></center></div>-->
-		<div id="answer-buttons" class="btn-grid"></div>
-		</div></center>
-	</div>
-	<div id="controls">
-		<center><button id="start-btn">Begin	</button></center>
-		<button id="next-btn">Next</button>
-	</div>
-	<div id="results">
-	</div>
-</div>
-<script src="myco.js"></script>
-</body>
-</html>
+document.addEventListener('DOMContentLoaded', () => {
+  nextButton.classList.add('hide');
+});
+const startButton = document.getElementById('start-btn');
+const nextButton = document.getElementById('next-btn');
+const mushroomContainerElement = document.getElementById('mushroom-container');
+const mushroomElement = document.getElementById('mushroom');
+const answerButtonsElement = document.getElementById('answer-buttons');
+const resultsElement = document.getElementById('results');
+//const mushroomImage = document.getElementById("mushroom-image");
+const mhs = new Image(200,200);
+mhs.src = 'img/manyheadedslime.jpg';
+const bsl = new Image(200,200);
+bsl.src = 'img/britishsoldierlichen.png';
+const waspmold = new Image(200,200);
+waspmold.src = 'img/bgwaspmold0.jpeg';
+const bgwaspmold = new Image(200,200);
+bgwaspmold.src = 'img/bgwaspmold.jpeg';
+const enada = new Image(200,200);
+enada.src = 'img/enada.png';
+const ppc = new Image(200,200);
+ppc.src = 'img/ppc.png';
+const cl = new Image(200,200);
+cl.src = 'img/chickenlips.png';
+const so = new Image(200,200);
+so.src = 'img/smokedoysterling.png';
+const ge = new Image(200,200);
+ge.src = 'img/goldenear.png';
+const chrom = new Image(200,200);
+chrom.src = 'img/chromosera.png';
+const et = new Image(200,200);
+et.src = 'img/earthtongue.png';
+const ls = new Image(200,200);
+ls.src = 'img/lessersulphur.png';
+const graylegs = new Image(200,200);
+graylegs.src = 'img/graylegs.png';
+const rfpc = new Image(200,200);
+rfpc.src = 'img/rfpc.png';
+const thorn = new Image(200,200);
+thorn.src = 'img/thorn.png';
+const reddock = new Image(200,200);
+reddock.src = 'img/reddock.png';
+const sd = new Image(200,200);
+sd.src = 'img/sulphurdust.png';
+const dryad = new Image(200,200);
+dryad.src = 'img/dryad.png';
+const ladder = new Image(200,200);
+ladder.src = 'img/ladder.png';
+const pretzel = new Image(200,200);
+pretzel.src = 'img/pretzel.png';
+const hc = new Image(200,200);
+hc.src = 'img/honeycomb.png';
+const fairycup = new Image(200,200);
+fairycup.src = 'img/stalkedfairycup.png';
+const lb = new Image(200,200);
+lb.src = 'img/laqbracket.png';
+const vpspore = new Image(200,200);
+vpspore.src = 'img/violetpolyspore.png';
+const turban = new Image(200,200);
+turban.src = 'img/turban.png';
+const pel = new Image(200,200);
+pel.src = 'img/pinkearth.png';
+const lp = new Image(200,200);
+lp.src = 'img/lipstick.png';
+const hoyster = new Image(200,200);
+hoyster.src = 'img/hairyoyster.png';
+const vermwaxcap = new Image(200,200);
+vermwaxcap.src = 'img/vermillion.png';
+const vfl = new Image(200,200);
+vfl.src = 'img/variegatedfoam.png';
+const mycena = new Image(200,200);
+mycena.src = 'img/mycena.png';
+const dragonhorn = new Image(200,200);
+dragonhorn.src = 'img/dragonhorn.png';
+const cparchment = new Image(200,200);
+cparchment.src = 'img/parchment.png';
+
+images = [mhs, bsl, waspmold, enada, ppc, cl, so, ge, chrom, et, ls, graylegs, rfpc, thorn, reddock, sd, dryad, ladder, pretzel, hc, fairycup, lb, vpspore, turban, pel, lp, hoyster, vermwaxcap, vfl, mycena, dragonhorn, cparchment];
+const mushrooms = [
+	{
+		mushroom: images[0],
+		answers: [ 
+			{ text: 'Many-Headed Slime', correct: true },
+			{ text: 'Morel', correct: false },
+			{ text: 'Bolete', correct: false },
+			{ text: 'Chanterelle', correct: false },
+		]
+	},
+	{
+		mushroom: images[1],
+		answers: [
+			{ text: 'Lipstick Powderhorn', correct: false },
+			{ text: 'Red Fruited Pixie Cup', correct: false },
+			{ text: 'British Soldier Lichen', correct: true },
+			{ text: 'Powdered Funnel Lichen', correct: false },
+		]
+	},
+	{
+		mushroom: images[2],
+		answers: [ 
+			{ text: 'Bulbasauritae', correct: false },
+			{ text: 'Wasp Nest Slime Mold', correct: true },
+			{ text: 'Red Monster Fungus', correct: false },
+			{ text: 'Spring-Ups', correct: false },
+		]
+	},
+	{
+		mushroom: images[3],
+		answers: [
+			{ text: 'Widow Brew', correct: false },
+			{ text: 'White Amanita', correct: false },
+			{ text: 'Eastern North American Destroying Angel', correct: true },
+			{ text: 'Powder Top', correct: false },
+		]
+	},
+	{
+		mushroom: images[4],
+		answers: [ 
+			{ text: 'Pebbled Pixie Cup', correct: true },
+			{ text: 'Flaked Laurel', correct: false },
+			{ text: 'Glistening Dew Cup', correct: false },
+			{ text: 'Jack-in-the-Pulpit', correct: false },
+		]
+	},
+	{
+		mushroom: images[5],
+		answers: [
+			{ text: 'Osprey Farts', correct: false },
+			{ text: 'Hen Pecks', correct: false },
+			{ text: 'Rooster Fingers', correct: false },
+			{ text: 'Chicken Lips', correct: true },
+		]
+	},
+	{
+		mushroom: images[6],
+		answers: [ 
+			{ text: 'Puff Balls', correct: false },
+			{ text: 'Smoked Oysterling', correct: true },
+			{ text: 'Bolete', correct: false },
+			{ text: 'Wood Acne', correct: false },
+		]
+	},
+	{
+		mushroom: images[7],
+		answers: [
+			{ text: 'Forest Jelly', correct: false },
+			{ text: 'Jelly Lichen', correct: false },
+			{ text: 'Golden Ear', correct: true },
+			{ text: 'Jelly Ear', correct: false },
+		]
+	},
+	{
+		mushroom: images[8],
+		answers: [ 
+			{ text: 'Brown Buttons', correct: false },
+			{ text: 'Hyalorbilia', correct: false },
+			{ text: 'Golden Amanita', correct: false },
+			{ text: 'Chromosera', correct: true },
+		]
+	},
+	{
+		mushroom: images[9],
+		answers: [
+			{ text: 'Orange Tree Socks', correct: false },
+			{ text: 'Orange Wind Socks', correct: false },
+			{ text: 'Irregular Earth Tongue', correct: true },
+			{ text: 'Common Earth Socks', correct: false },
+		]
+	},
+	{
+		mushroom: images[10],
+		answers: [ 
+			{ text: 'Lesser Sulphur Cup', correct: true },
+			{ text: 'Cup of Sulphur', correct: false },
+			{ text: 'Sulphur Sprouts', correct: false },
+			{ text: 'Lesser Sulphur Shoots', correct: false },
+		]
+	},
+	{
+		mushroom: images[11],
+		answers: [
+			{ text: 'Lesser Gray Legs', correct: true },
+			{ text: 'Wig of Grandmother', correct: false },
+			{ text: 'Gray Shorts', correct: false },
+			{ text: 'Lesser Gray Shorts', correct: false },
+		]
+	},	
+	{
+		mushroom: images[12],
+		answers: [
+			{ text: 'Cherry Turban', correct: false },
+			{ text: 'Strawberry Pixie Cup', correct: false },
+			{ text: 'Red-Fruited Pixie Cup', correct: true },
+			{ text: 'Strawberry Turban', correct: false },
+		]
+	},
+	{
+		mushroom: images[13],
+		answers: [ 
+			{ text: 'Thorn Lichen', correct: true },
+			{ text: 'Horn Lichen', correct: false },
+			{ text: 'Pointed Lichen', correct: false },
+			{ text: 'Sharp Lichen', correct: false },
+		]
+	},
+	{
+		mushroom: images[14],
+		answers: [
+			{ text: 'Red Spot', correct: false },
+			{ text: 'Aged Red Fungus', correct: false },
+			{ text: 'Aged Wine Rash', correct: false },
+			{ text: 'Red Dock Spot', correct: true },
+		]
+	},
+	{
+		mushroom: images[15],
+		answers: [ 
+			{ text: 'Penicillin', correct: false },
+			{ text: 'Tree Mold Lichen', correct: false },
+			{ text: 'Sulphur Dust Lichen', correct: true },
+			{ text: 'Green Foam Lichen', correct: false },
+		]
+	},
+	{
+		mushroom: images[16],
+		answers: [
+			{ text: 'Druid Bracket', correct: false },
+			{ text: 'Pancake Bracket', correct: false },
+			{ text: 'Dryad Saddle', correct: true },
+			{ text: 'Druid Saddle', correct: false },
+		]
+	},
+	{
+		mushroom: images[17],
+		answers: [ 
+			{ text: 'Ladder Lichen', correct: true },
+			{ text: 'False Stories Lichen', correct: false },
+			{ text: 'Skyscraper Lichen', correct: false },
+			{ text: 'Extension Lichen', correct: false },
+		]
+	},
+	{
+		mushroom: images[18],
+		answers: [
+			{ text: 'Pretzel Fungus', correct: false },
+			{ text: 'Seafoam Slime Mold', correct: false },
+			{ text: 'Yellow Tube Fungus', correct: false },
+			{ text: 'Pretzel Slime Mold', correct: true },
+		]
+	},
+	{
+		mushroom: images[19],
+		answers: [ 
+			{ text: 'Mermaid Armpit', correct: false },
+			{ text: 'Angel Hair Slime Mold', correct: false },
+			{ text: 'Honeycomb Coral Slime Mold', correct: true },
+			{ text: 'Angel Hair Fungus', correct: false },
+		]
+	},
+	{
+		mushroom: images[20],
+		answers: [
+			{ text: 'Oak Fairy Cup', correct: false },
+			{ text: 'Oak Pin', correct: false },
+			{ text: 'Stalked Fairy Cup', correct: true },
+			{ text: 'Stalked Oak Pin', correct: false },
+		]
+	},
+	
+	
+		{
+		mushroom: images[21],
+		answers: [ 
+			{ text: 'Lacquered Bracket', correct: true },
+			{ text: 'Shiny Stump Ladder', correct: false },
+			{ text: 'Shiny Stump Step', correct: false },
+			{ text: 'Lacquered Stump Step', correct: false },
+		]
+	},
+	{
+		mushroom: images[22],
+		answers: [
+			{ text: 'Violet Polyspore', correct: true },
+			{ text: 'Thrown Paint Lichen', correct: false },
+			{ text: 'Thrown Paint Polyspore', correct: false },
+			{ text: 'Violet Paint Lichen', correct: false },
+		]
+	},	
+	{
+		mushroom: images[23],
+		answers: [
+			{ text: 'Alveoli', correct: false },
+			{ text: 'Salamander Trees', correct: false },
+			{ text: 'Turban Cup Lichen', correct: true },
+			{ text: 'Alveoli Cup Lichen', correct: false },
+		]
+	},
+	{
+		mushroom: images[24],
+		answers: [ 
+			{ text: 'Pink Earth Lichen', correct: true },
+			{ text: 'Mermaid Armpit', correct: false },
+			{ text: 'Pink Jheri Lichen', correct: false },
+			{ text: 'Jheri Lichen', correct: false },
+		]
+	},
+	{
+		mushroom: images[25],
+		answers: [
+			{ text: 'Toy Soldiers', correct: false },
+			{ text: 'Thorned Toy Soldiers', correct: false },
+			{ text: 'Complex Cladonia', correct: false },
+			{ text: 'Lipstick Powderhorn', correct: true },
+		]
+	},
+	{
+		mushroom: images[26],
+		answers: [ 
+			{ text: 'Ear of Grandpa', correct: false },
+			{ text: 'Hairy Ear of Grandpa', correct: false },
+			{ text: 'Hairy Oyster', correct: true },
+			{ text: 'Oyster of Grandpa', correct: false },
+		]
+	},
+	{
+		mushroom: images[27],
+		answers: [
+			{ text: 'Fluorescent Forest Cap', correct: false },
+			{ text: 'Cascading Waxcap', correct: false },
+			{ text: 'Vermillion Waxcap', correct: true },
+			{ text: 'Fluorescent Cascading Waxcap', correct: false },
+		]
+	},
+	{
+		mushroom: images[28],
+		answers: [ 
+			{ text: 'Variegated Foam Lichen', correct: true },
+			{ text: 'Dog Vomit Slime Mold', correct: false },
+			{ text: 'Foam Vomit Lichen', correct: false },
+			{ text: 'Variegated Cluster Fungus', correct: false },
+		]
+	},
+	{
+		mushroom: images[29],
+		answers: [
+			{ text: 'Cradle Fungus', correct: false },
+			{ text: 'Ribcage Mushroom', correct: false },
+			{ text: 'Stump Creeper', correct: false },
+			{ text: 'Snowbank Fairy Helmet', correct: true },
+		]
+	},
+	{
+		mushroom: images[30],
+		answers: [ 
+			{ text: 'Cannabis Lichen', correct: false },
+			{ text: 'Bud Rot Lichen', correct: false },
+			{ text: 'Dragon Horn', correct: true },
+			{ text: 'Dragon Teeth', correct: false },
+		]
+	},
+	{
+		mushroom: images[31],
+		answers: [
+			{ text: 'Candy Corn Lichen', correct: false },
+			{ text: 'Halloween Lichen', correct: false },
+			{ text: 'Crowded Parchment', correct: true },
+			{ text: 'Clownfish Teeth', correct: false },
+		]
+	},
+]
+
+let shuffledMushrooms;
+let currentMushroomIndex;
+let score = 0; 
+startButton.addEventListener('click', beginMycoMem);
+
+function beginMycoMem() {
+  startButton.classList.add('hide');
+  shuffledMushrooms = mushrooms.sort(() => Math.random() - .5);
+  currentMushroomIndex = 0;
+  mushroomContainerElement.classList.remove('hide');
+  setNextMushroom();
+}
+function showMushroom(mushroom) {
+  mushroomElement.innerHTML = "<img src=" + mushroom.mushroom.src + " />";
+  mushroom.answers.forEach(answer => {
+      const button = document.createElement('button');
+      button.innerText = answer.text;
+      button.classList.add('btn');
+      if (answer.correct) {
+          button.dataset.correct = answer.correct;
+      }
+      button.addEventListener('click', () => selectAnswer(button));
+      answerButtonsElement.appendChild(button);
+  });
+}
+function selectAnswer(selectedButton) {
+  Array.from(answerButtonsElement.children).forEach(button => {
+      button.disabled = true;
+      setStatusClass(button, button.dataset.correct);
+  });
+
+  const correct = selectedButton.dataset.correct;
+  setStatusClass(selectedButton, correct);
+  setTimeout(() => {
+      if (shuffledMushroom.length > currentMushroomIndex + 1) {
+          nextButton.classList.remove('hide');
+      } else {
+          completeMycoMem();
+      }
+  }, 1000);
+}
+function setStatusClass(element, correct) {
+  clearStatusClass(element);
+  if (correct) {
+      element.classList.add('correct');
+  } else {
+      element.classList.add('incorrect');
+  }
+}
+function clearStatusClass(element) {
+  element.classList.remove('correct');
+  element.classList.remove('incorrect');
+}
+nextButton.addEventListener('click', () => {
+  currentMushroomIndex++;
+  setNextMushroom();
+});
+function setNextMushroom() {
+  resetState();
+  showMushroom(shuffledMushrooms[currentMushroomIndex]);
+}
+function resetState() {
+  clearStatusClass(document.body);
+  nextButton.classList.add('hide');
+  while (answerButtonsElement.firstChild) {
+      answerButtonsElement.removeChild(answerButtonsElement.firstChild);
+  }
+}
+
+function selectAnswer(selectedButton) {
+  Array.from(answerButtonsElement.children).forEach(button => {
+      button.disabled = true;
+      setStatusClass(button, button.dataset.correct);
+  });
+
+  const correct = selectedButton.dataset.correct;
+  if (correct) {
+      score++;
+  }
+  setStatusClass(selectedButton, correct);
+
+  setTimeout(() => {
+      if (shuffledMushrooms.length > currentMushroomIndex + 1) {
+          nextButton.classList.remove('hide');
+      } else {
+          completeMycoMem();
+      }
+  }, 1000);
+ 
+}
+
+function setStatusClass(element, correct) {
+  clearStatusClass(element);
+  if (correct) {
+      element.classList.add('correct');
+  } else {
+      element.classList.add('incorrect');
+  }
+}
+
+function clearStatusClass(element) {
+  element.classList.remove('correct');
+  element.classList.remove('incorrect');
+}
+
+function completeMycoMem() {
+  mushroomContainerElement.classList.add('hide');
+  nextButton.classList.add('hide');
+  resultsElement.classList.remove('hide');
+  resultsElement.innerHTML = `
+      <h2><font color="ffffff"><center>Accuracy: ${score} out of ${shuffledMushrooms.length}</p></center></h2>
+      <center><button onclick="restartMycoMem()">Retake</button> or you can <button onclick="window.close()">Exit</button></center>`;
+}
+
+function restartMycoMem() {
+  resultsElement.classList.add('hide');
+  score = 0;
+  currentMushroomIndex = 0;
+  beginMycoMem();
+}
